@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d07cevbi7ijp4"]
+
+[ext_resource type="PackedScene" uid="uid://bctgag8fuqyws" path="res://friend_list.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node2D" unique_id=902387569]
+
+[node name="FriendList" parent="." unique_id=1701671282 instance=ExtResource("1_ig7tw")]
+custom_minimum_size = Vector2(400, 400)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 550.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1

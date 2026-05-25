@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bctgag8fuqyws"]
+
+[ext_resource type="Script" uid="uid://dxip4ocld4ugy" path="res://friend_list.gd" id="1_fx5us"]
+[ext_resource type="PackedScene" uid="uid://bcjr7gu3e7ojw" path="res://friend_profile_icon.tscn" id="2_cxs6s"]
+[ext_resource type="Texture2D" uid="uid://bsoguro10km4" path="res://Art/128x128.png" id="3_cxs6s"]
+
+[node name="FriendList" type="Control" unique_id=1701671282]
+layout_mode = 3
+anchor_right = 0.43400002
+anchor_bottom = 1.0
+offset_right = 5.0319824
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_fx5us")
+profile_card_scene = ExtResource("2_cxs6s")
+default_profile_image = ExtResource("3_cxs6s")
+
+[node name="Panel" type="Panel" parent="." unique_id=1893708397]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_top = 43.0
+offset_right = 2.0
+offset_bottom = 0.29595947
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1590096762]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.07
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.27999878
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=473382826]
+layout_mode = 2
+
+[node name="SearchBar" type="LineEdit" parent="Panel/VBoxContainer/HBoxContainer" unique_id=335411666]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddFriendButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1778954458]
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+text = "+ Add Friend"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer" unique_id=427252661]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/ScrollContainer" unique_id=684485254]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+
+[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer" unique_id=50022084]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 50
+columns = 3
+
+[node name="FriendProfileIcon" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=192968647 instance=ExtResource("2_cxs6s")]
+layout_mode = 2
+
+[node name="FriendProfileIcon2" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1569597065 instance=ExtResource("2_cxs6s")]
+layout_mode = 2
+
+[node name="FriendProfileIcon3" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=2106521851 instance=ExtResource("2_cxs6s")]
+layout_mode = 2
+
+[node name="FriendProfileIcon4" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=112824006 instance=ExtResource("2_cxs6s")]
+layout_mode = 2
+
+[node name="FriendProfileIcon5" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1752312430 instance=ExtResource("2_cxs6s")]
+layout_mode = 2
+
+[node name="FriendProfileIcon6" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1286014371 instance=ExtResource("2_cxs6s")]
+layout_mode = 2
+
+[node name="FriendProfileIcon7" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=270459914 instance=ExtResource("2_cxs6s")]
+layout_mode = 2
+
+[node name="FriendProfileIcon8" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1198392643 instance=ExtResource("2_cxs6s")]
+layout_mode = 2
+
+[node name="FriendProfileIcon9" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=992144220 instance=ExtResource("2_cxs6s")]
+layout_mode = 2
+
+[node name="AddFriendWindow" type="Window" parent="Panel" unique_id=877944761]
+oversampling_override = 1.0
+title = "Add Friend"
+position = Vector2i(575, 36)
+size = Vector2i(300, 300)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/AddFriendWindow" unique_id=14072798]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FirstNameInput" type="LineEdit" parent="Panel/AddFriendWindow/VBoxContainer" unique_id=990192595]
+layout_mode = 2
+placeholder_text = "First Name"
+
+[node name="LastNameInput" type="LineEdit" parent="Panel/AddFriendWindow/VBoxContainer" unique_id=656260760]
+layout_mode = 2
+placeholder_text = "Last Name"
+
+[node name="SaveButton" type="Button" parent="Panel/AddFriendWindow/VBoxContainer" unique_id=91318775]
+layout_mode = 2
+text = "Save"

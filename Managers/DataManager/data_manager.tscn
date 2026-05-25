@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ddv3x7e7ni305"]
+
+[ext_resource type="Script" uid="uid://dv3k2bkvn5bpd" path="res://Managers/DataManager/data_manager.gd" id="1_wpyi5"]
+
+[node name="DataManager" type="Node" unique_id=64234285]
+script = ExtResource("1_wpyi5")
