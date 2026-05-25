@@ -12,6 +12,9 @@ extends Control
 @onready var last_name_input: LineEdit = $Panel/AddFriendWindow/VBoxContainer/LastNameInput
 @onready var save_button: Button = $Panel/AddFriendWindow/VBoxContainer/SaveButton
 
+# delete pop-up message
+@onready var confirm_delete_dialog: ConfirmationDialog = $confirm_delete_dialog
+var pending_delete_friend_id := ""
 
 var friends := []
 
@@ -28,6 +31,7 @@ func _ready() -> void:
 	add_friend_button.pressed.connect(_on_add_friend_button_pressed)
 	save_button.pressed.connect(_on_save_button_pressed)
 	search_bar.text_changed.connect(_on_search_text_changed)
+	confirm_delete_dialog.confirmed.connect(_on_confirm_delete_confirmed)
 
 	load_friend_data()
 	add_friend_id_if_missing()
@@ -69,15 +73,42 @@ func populate_friend_grid(friend_list: Array) -> void:
 		card.check_in_requested.connect(_on_profile_check_in_requested)
 
 func _on_profile_delete_requested(friend_id: String) -> void:
+	pending_delete_friend_id = friend_id
+
+	var friend := get_friend_by_id(friend_id)
+	var full_name := "%s %s" % [
+		friend.get("first_name", ""),
+		friend.get("last_name", "")
+	]
+	
+	confirm_delete_dialog.dialog_text = "Delete %s? This cannot be undone." % full_name.strip_edges()
+	confirm_delete_dialog.popup_centered()
+
+
+func get_friend_by_id(friend_id: String) -> Dictionary:
+	for friend in friends:
+		if friend.get("id", "") == friend_id:
+			return friend
+
+	return {}
+
+
+func _on_confirm_delete_confirmed() -> void:
+	if pending_delete_friend_id == "":
+		return
+
 	friends = friends.filter(
 		func(friend):
-			return friend.get("id", "") != friend_id
+			return friend.get("id", "") != pending_delete_friend_id
 	)
 
 	DataManager.save_friends(friends)
+
+	pending_delete_friend_id = ""
 	populate_friend_grid(friends)
 
 func _on_add_friend_button_pressed() -> void:
+	update_add_friend_window_size()
 	first_name_input.text = ""
 	last_name_input.text = ""
 	add_friend_window.show()
@@ -162,3 +193,15 @@ func _on_profile_check_in_requested(friend_id: String) -> void:
 
 	DataManager.save_friends(friends)
 	populate_friend_grid(friends)
+
+func update_add_friend_window_size() -> void: 
+	var viewport_size := get_viewport_rect().size
+
+	var window_width := int(viewport_size.x * 0.35)
+	var window_height := int(viewport_size.y * 0.35)
+
+	window_width = clamp(window_width, 200, 200)
+	window_height = clamp(window_height, 240, 500)
+
+	add_friend_window.size = Vector2i(window_width, window_height)
+	add_friend_window.min_size = Vector2i(320, 220)

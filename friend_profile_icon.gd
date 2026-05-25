@@ -7,7 +7,8 @@ signal check_in_requested(friend_id: String)
 @onready var progress_bar: ProgressBar = $VBoxContainer/ProgressBar
 @onready var first_name_label: Label = $VBoxContainer/HBoxContainer/FirstNameLabel
 @onready var last_name_label: Label = $VBoxContainer/HBoxContainer/LastNameLabel
-@onready var delete_button: Button = $DeleteButton
+#@onready var delete_button: Button = $DeleteButton
+@onready var delete_button: Button = $VBoxContainer/DeleteButton
 @onready var check_in_button: Button = $VBoxContainer/CheckInButton
 @onready var last_seen_label: Label = $VBoxContainer/LastSeenLabel
 
