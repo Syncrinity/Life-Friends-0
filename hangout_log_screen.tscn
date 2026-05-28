@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://csk4u1cskcuo3"]
+
+[ext_resource type="Script" uid="uid://cuffdf0ckiupm" path="res://hangout_log_screen.gd" id="1_u6x3y"]
+[ext_resource type="PackedScene" uid="uid://csgddhif6hpkr" path="res://Hangout Log Entry/hangout_log_entry.tscn" id="2_hqvia"]
+[ext_resource type="Texture2D" uid="uid://bsoguro10km4" path="res://Art/128x128.png" id="3_n6ok6"]
+
+[node name="HangoutLogScreen" type="Control" unique_id=1647818721]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_u6x3y")
+hangout_log_entry_scene = ExtResource("2_hqvia")
+default_profile_image = ExtResource("3_n6ok6")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=636268802]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=923482558]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HangoutListContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=46862692]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HangoutLogEntry" parent="VBoxContainer/ScrollContainer/HangoutListContainer" unique_id=803003429 instance=ExtResource("2_hqvia")]
+layout_mode = 2
+
+[node name="HangoutLogEntry2" parent="VBoxContainer/ScrollContainer/HangoutListContainer" unique_id=1454929639 instance=ExtResource("2_hqvia")]
+layout_mode = 2
+
+[node name="EditHangoutWindow" type="ConfirmationDialog" parent="." unique_id=753758557]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(316, 381)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditHangoutWindow" unique_id=1493510234]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 308.0
+offset_bottom = 332.0
+
+[node name="HangoutTypeOption" type="OptionButton" parent="EditHangoutWindow/VBoxContainer" unique_id=77271825]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Hangout"
+popup/item_0/id = 0
+popup/item_1/text = "Birthday"
+popup/item_1/id = 1
+
+[node name="editHangoutLabel" type="TextEdit" parent="EditHangoutWindow/VBoxContainer" unique_id=1143454764]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "Test Test Text"

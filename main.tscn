@@ -1,17 +1,53 @@
 [gd_scene format=3 uid="uid://d07cevbi7ijp4"]
 
+[ext_resource type="Script" uid="uid://deey04ffrka6r" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bctgag8fuqyws" path="res://friend_list.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://csk4u1cskcuo3" path="res://hangout_log_screen.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node2D" unique_id=902387569]
+script = ExtResource("1_0xm2m")
 
-[node name="FriendList" parent="." unique_id=1701671282 instance=ExtResource("1_ig7tw")]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=692711544]
+offset_right = 1920.0
+offset_bottom = 1079.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1263356764]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1903315874]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="FriendListButton" type="Button" parent="VBoxContainer/HBoxContainer/ButtonContainer" unique_id=1169393154]
+layout_mode = 2
+text = "Friend List"
+
+[node name="HangoutLogButton" type="Button" parent="VBoxContainer/HBoxContainer/ButtonContainer" unique_id=588456059]
+layout_mode = 2
+text = "Hangout Log"
+
+[node name="ScreenContainer" type="Control" parent="VBoxContainer" unique_id=131215948]
+layout_mode = 2
+
+[node name="FriendList" parent="VBoxContainer/ScreenContainer" unique_id=1701671282 instance=ExtResource("1_ig7tw")]
 custom_minimum_size = Vector2(400, 400)
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 4.0
 offset_top = 2.0
-offset_right = 550.0
-offset_bottom = 648.0
+offset_right = 554.0
+offset_bottom = 652.0
 grow_horizontal = 1
 grow_vertical = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HangoutLogScreen" parent="VBoxContainer/ScreenContainer" unique_id=1647818721 instance=ExtResource("3_h2yge")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 550.0
+offset_bottom = 650.0
