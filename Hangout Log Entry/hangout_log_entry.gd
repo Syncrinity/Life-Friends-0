@@ -1,9 +1,11 @@
 extends PanelContainer
 
 signal edit_requested(friend_id: String, hangout_id: String)
+signal selected(hangout_id: String, date_timestamp: int)
 
 var friend_id := ""
 var hangout_id := ""
+var date_timestamp := 0
 
 @onready var name_label: Label = $HBoxContainer/VBoxContainer/NameLabel
 @onready var date_label: Label = $HBoxContainer/VBoxContainer/DateLabel
@@ -14,7 +16,7 @@ var hangout_id := ""
 func _ready() -> void:
 	edit_button.pressed.connect(_on_edit_button_pressed)
 
-func setup(participants: Array, date_text: String, hangout_type: String, notes: String, default_icon: Texture2D, p_friend_id: String, p_hangout_id: String) -> void:
+func setup(participants: Array, _date_timestamp: int, date_text: String, hangout_type: String, notes: String, default_icon: Texture2D, p_friend_id: String, p_hangout_id: String) -> void:
 	for child in icon_container.get_children():
 		child.queue_free()
 	
@@ -44,10 +46,17 @@ func setup(participants: Array, date_text: String, hangout_type: String, notes: 
 		])
 
 	name_label.text = ", ".join(names)
+	date_timestamp = _date_timestamp
 	date_label.text = "%s • %s" % [date_text, hangout_type]
 	notes_label.text = notes if notes != "" else "No notes"
 	friend_id = p_friend_id
 	hangout_id = p_hangout_id
 
+
 func _on_edit_button_pressed() -> void:
 	edit_requested.emit(friend_id, hangout_id)
+
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		selected.emit(hangout_id, date_timestamp)

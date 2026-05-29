@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cuffdf0ckiupm" path="res://hangout_log_screen.gd" id="1_u6x3y"]
 [ext_resource type="PackedScene" uid="uid://csgddhif6hpkr" path="res://Hangout Log Entry/hangout_log_entry.tscn" id="2_hqvia"]
 [ext_resource type="Texture2D" uid="uid://bsoguro10km4" path="res://Art/128x128.png" id="3_n6ok6"]
+[ext_resource type="PackedScene" uid="uid://d3xcqqr0b6hki" path="res://calendar_view.tscn" id="4_vkxim"]
+[ext_resource type="PackedScene" uid="uid://bccpyrlnpnw3k" path="res://calendar_day_cell.tscn" id="5_xtaxx"]
 
 [node name="HangoutLogScreen" type="Control" unique_id=1647818721]
 layout_mode = 3
@@ -17,6 +19,11 @@ hangout_log_entry_scene = ExtResource("2_hqvia")
 default_profile_image = ExtResource("3_n6ok6")
 metadata/_edit_use_anchors_ = true
 
+[node name="HSplitContainer" type="HSplitContainer" parent="." unique_id=1330874891]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=636268802]
 layout_mode = 1
 anchors_preset = 15
@@ -24,7 +31,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+
+[node name="HangoutSearchBar" type="LineEdit" parent="VBoxContainer" unique_id=1631817127]
+layout_mode = 2
+placeholder_text = "Search"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=923482558]
 layout_mode = 2
@@ -43,13 +53,13 @@ layout_mode = 2
 [node name="EditHangoutWindow" type="ConfirmationDialog" parent="." unique_id=753758557]
 oversampling_override = 1.0
 position = Vector2i(0, 36)
-size = Vector2i(316, 381)
+size = Vector2i(316, 502)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditHangoutWindow" unique_id=1493510234]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 308.0
-offset_bottom = 332.0
+offset_bottom = 453.0
 
 [node name="HangoutTypeOption" type="OptionButton" parent="EditHangoutWindow/VBoxContainer" unique_id=77271825]
 layout_mode = 2
@@ -60,7 +70,71 @@ popup/item_0/id = 0
 popup/item_1/text = "Birthday"
 popup/item_1/id = 1
 
+[node name="DateHContainer" type="HBoxContainer" parent="EditHangoutWindow/VBoxContainer" unique_id=906425334]
+layout_mode = 2
+
+[node name="EditMonthOption" type="OptionButton" parent="EditHangoutWindow/VBoxContainer/DateHContainer" unique_id=222392325]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 12
+popup/item_0/text = "January"
+popup/item_0/id = 0
+popup/item_1/text = "February"
+popup/item_1/id = 1
+popup/item_2/text = "March"
+popup/item_2/id = 2
+popup/item_3/text = "April"
+popup/item_3/id = 3
+popup/item_4/text = "May"
+popup/item_4/id = 4
+popup/item_5/text = "June"
+popup/item_5/id = 5
+popup/item_6/text = "July"
+popup/item_6/id = 6
+popup/item_7/text = "August"
+popup/item_7/id = 7
+popup/item_8/text = "September"
+popup/item_8/id = 8
+popup/item_9/text = "October"
+popup/item_9/id = 9
+popup/item_10/text = "November"
+popup/item_10/id = 10
+popup/item_11/text = "December"
+popup/item_11/id = 11
+
+[node name="EditDayOption" type="OptionButton" parent="EditHangoutWindow/VBoxContainer/DateHContainer" unique_id=967372134]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EditYearOption" type="OptionButton" parent="EditHangoutWindow/VBoxContainer/DateHContainer" unique_id=130887971]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimeHContainer" type="HBoxContainer" parent="EditHangoutWindow/VBoxContainer" unique_id=462442563]
+layout_mode = 2
+
+[node name="EditStartTimeInput" type="LineEdit" parent="EditHangoutWindow/VBoxContainer/TimeHContainer" unique_id=831728668]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "1:30 pm"
+
+[node name="EditEndTimeInput" type="LineEdit" parent="EditHangoutWindow/VBoxContainer/TimeHContainer" unique_id=773314081]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "2:30 pm"
+
 [node name="editHangoutLabel" type="TextEdit" parent="EditHangoutWindow/VBoxContainer" unique_id=1143454764]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 2
 text = "Test Test Text"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="CalendarView" parent="." unique_id=1920915838 instance=ExtResource("4_vkxim")]
+layout_mode = 1
+offset_left = 422.0
+offset_top = -512.0
+offset_right = 1222.0
+offset_bottom = 288.0
+day_cell_scene = ExtResource("5_xtaxx")

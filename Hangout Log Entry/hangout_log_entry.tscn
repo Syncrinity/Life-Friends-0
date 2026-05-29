@@ -38,6 +38,7 @@ text = "Date"
 horizontal_alignment = 1
 
 [node name="NotesLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1464696524]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "Notes"
 horizontal_alignment = 1
