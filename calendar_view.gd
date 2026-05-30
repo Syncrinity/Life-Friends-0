@@ -11,6 +11,8 @@ extends PanelContainer
 var displayed_month: int
 var displayed_year: int
 
+var month_name: Array = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
+
 var hangouts: Array = []
 var highlighted_hangout_id := ""
 
@@ -23,13 +25,16 @@ func _ready() -> void:
 	next_month_button.pressed.connect(_on_next_month_button_pressed)
 	
 	refresh_calendar()
-	
+
+
+func convert_month_to_text(display_month: int) -> String:
+	return month_name[display_month - 1]
 
 func refresh_calendar() -> void:
 	for child in calendar_grid.get_children():
 		child.queue_free()
 
-	month_year_label.text = "%d / %d" % [displayed_month, displayed_year]
+	month_year_label.text = "%s %d" % [convert_month_to_text(displayed_month), displayed_year]
 
 	var first_day := {
 		"year": displayed_year,
